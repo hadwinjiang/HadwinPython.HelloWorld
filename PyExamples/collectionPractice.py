@@ -91,4 +91,29 @@ for key in colors:
 for value in colors.values():
     print(value)
 for key, value in colors.items():
-    
+    print("{key} => {value}")
+from pprint import pprint as pp 
+pp(m)
+
+set
+p = { 12, 33, 45, 23, 32}
+e = set()
+e = set([2, 3, 4, 5 , 6])
+k.add(108)
+k.update(2, 3, 4)
+k.remove(2)
+set1.union(set2)
+set1.difference(set2)
+set1.intersect(set2)
+set1.symmetric_difference(set2)
+set1.isdisjoint(set2)
+set1.issubset(set2)
+set2.issuperset(set2)
+
+Container(in, not in): str, list, range, tuple, tytes, set, dict
+Sized(len): str, list, range, tuple, bytes, set, dict
+Iterable(for in): str, list, range, tuple, bytes, set, dict
+Sequence([index]): str, list, range, tuple, bytes
+Mutable Sequence: list
+Mutable Set: set
+Mutable Mapping: dict
