@@ -14,4 +14,8 @@ h.writelines(
     'for you know only, \n',
     'A heap of broken images, ',
     'where the sun beats\n'])
-    
+
+
+Command
+python recaman.py recaman.txt 100
+python series.py recaman.txt
