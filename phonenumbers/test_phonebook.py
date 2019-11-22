@@ -38,6 +38,11 @@ class PhoneBookTest(unittest.TestCase):
         self.phone_book.add("Sue", "123")
         self.assertFalse(self.phone_book.is_consistent())
 
+    def test_phone_book_adds_names_and_numbers(self):
+        self.phone_book.add("Sue", "123343")
+        self.assertIn("Sue", self.phone_book.get_names())
+        self.assertIn("123343", self.phone_book.get_numbers())
+
 
 if __name__ == '__main__':
     unittest.main()
