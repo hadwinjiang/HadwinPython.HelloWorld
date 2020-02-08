@@ -5,6 +5,7 @@
 {% block content %}
 <div class="row">
     <div class="col-lg-3 my-4">
+        <a href="{{ url_for('edit_item', item_id=item.id) }}" class="btn btn-primary">Edit item</a>
         <form method="POST" action="{{ url_for('delete_item', item_id=item.id) }}">
             {{ deleteItemForm.hidden_tag() }}
             {{ deleteItemForm.submit(class="btn btn-danger", onclick="return confirm('Are you sure you want to delete
