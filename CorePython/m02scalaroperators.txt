@@ -1,0 +1,16 @@
+Scalar Types
+  int 42
+  float 4.2
+  NoneType None - the null object
+
+if c > 5:
+  c -= 1
+
+if c > 5:
+
+elif c > 3:
+
+
+while True:
+  break
+
