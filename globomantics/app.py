@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, g, flash
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextAreaField, SubmitField, SelectField
+from wtforms import StringField, TextAreaField, SubmitField, SelectField, DecimalField
+from wtforms.validators import InputRequired, DataRequired, Length
 # import pdb
 import sqlite3
 
@@ -9,9 +10,14 @@ app.config["SECRET_KEY"] = "secretkey"
 
 
 class NewItemForm(FlaskForm):
-    title = StringField("Title")
-    price = StringField("Price")
-    description = TextAreaField("Description")
+    title = StringField("Title", validators=[InputRequired("Input is required!"), DataRequired("Data is required!"),
+                                             Length(min=5, max=20,
+                                                    message="Input must be between 5 and 20 characters long")])
+    price = DecimalField("Price")
+    description = TextAreaField("Description",
+                                validators=[InputRequired("Input is required!"), DataRequired("Data is required!"),
+                                            Length(min=5, max=40,
+                                                   message="Input must be between 5 and 40 characters long")])
     category = SelectField("Category", coerce=int)
     subcategory = SelectField("Subcategory", coerce=int)
     submit = SubmitField("Submit")
