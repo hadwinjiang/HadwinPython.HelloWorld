@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileRequired
 from wtforms import FileField, StringField, TextAreaField, SubmitField, SelectField, DecimalField
 from wtforms.validators import InputRequired, DataRequired, Length, ValidationError
-from werkzeug.utils import secure_filename
+from werkzeug.utils import secure_filename, escape
 # import pdb
 import sqlite3
 import os
@@ -127,7 +127,7 @@ def edit_item(item_id):
              WHERE id = ?""",
                       (
                           form.title.data,
-                          form.description.data,
+                          escape(form.description.data),
                           float(form.price.data),
                           filename,
                           item_id
@@ -314,7 +314,7 @@ def new_item():
                         VALUES (?,?,?,?,?,?)""",
                   (
                       form.title.data,
-                      form.description.data,
+                      escape(form.description.data),
                       float(form.price.data),
                       filename,
                       form.category.data,
