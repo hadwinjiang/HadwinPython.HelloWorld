@@ -18,3 +18,6 @@ request.form
 request.args
 c
 
+# Install Flash WTF
+pip install flask_wtf
+pip freeze > requirements.txt
