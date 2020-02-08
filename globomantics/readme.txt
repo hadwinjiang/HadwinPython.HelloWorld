@@ -18,6 +18,10 @@ request.form
 request.args
 c
 
+# SQLite
+python ./db/init.py
+python ./db/show_tables.py
+
 # Install Flash WTF
 pip install flask_wtf
 pip freeze > requirements.txt
