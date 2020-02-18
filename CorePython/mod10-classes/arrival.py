@@ -2,18 +2,54 @@
 
 
 class Flight:
+    """A flight with a particular passenger aircraft."""
 
-    def __init__(self, number):
+    def __init__(self, number, aircraft):
         if not number[:2].isalpha():
             raise ValueError(f"No airline code in '{number}'")
         if not number[:2].isupper():
             raise ValueError(f"Invalid airline code '{number}'")
         if not (number[2:].isdigit() and int(number[2:]) <= 9999):
             raise ValueError(f"Invalid route number '{number}'")
+
         self._number = number
+        self._aircraft = aircraft
+        rows, seats = self._aircraft.seating_plan()
+        self._seating = [None] + [{letter: None for letter in seats} for _ in rows]
+
+    def aircraft_model(self):
+        return self._aircraft.model()
 
     def number(self):
         return self._number
+
+    def allocate_seat(self, seat, passenger):
+        """Allocate a seat to a passenger"""
+
+        row, letter = self._parse_seat(seat)
+
+        if self._seating[row][letter] is not None:
+            raise ValueError(f"Seat {seat} already occupied")
+
+        self._seating[row][letter] = passenger
+
+    def _parse_seat(self, seat):
+        rows, seat_letters = self._aircraft.seating_plan()
+
+        letter = seat[-1]
+        if letter not in seat_letters:
+            raise ValueError(f"Invalid seat letter {letter}")
+
+        row_text = seat[:-1]
+        try:
+            row = int(row_text)
+        except ValueError:
+            raise ValueError(f"Invalid seat row {row_text}")
+
+        if row not in rows:
+            raise ValueError(f"Invalid row number {row}")
+
+        return row, letter
 
 
 class Aircraft:
@@ -35,6 +71,11 @@ class Aircraft:
                 "ABCDEFGHJK"[:self._num_rows])
 
 
-f = Flight("SN060")
+from pprint import pprint as pp
+
+f = Flight("SN060", Aircraft("G-EUPT", "Airbus A319", num_rows=22, num_seats_per_row=6))
 print(f.number())
+print(f.aircraft_model())
+f.allocate_seat("12A", "Guido van Rossum")
+# pp(f._seating)
 # print(f._number)
