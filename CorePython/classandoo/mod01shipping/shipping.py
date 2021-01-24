@@ -28,7 +28,7 @@ class ShippingContainer:
     def __init__(self, owner_code, contents):
         self.owner_code = owner_code  # Instance attribute
         self.contents = contents
-        self.bic = ShippingContainer._make_bic_code(
+        self.bic = self._make_bic_code(
             owner_code,
             serial=ShippingContainer._generate_serial()
         )
@@ -46,3 +46,18 @@ class ShippingContainer:
 # Enclosing -   Inside enclosing functions
 # Global    -   At the top level of the module
 # Built-in  -   In the special builtins module
+
+
+class RefrigeratedShippingContainer(ShippingContainer):
+
+    @staticmethod
+    def _make_bic_code(owner_code, serial):
+        return iso6346.create(
+            owner_code=owner_code,
+            serial=str(serial).zfill(6),
+            category="R"
+        )
+
+
+# from classandoo.mod01shipping.shipping import *
+# r1 = RefrigeratedShippingContainer("MAE", ["fish"])
