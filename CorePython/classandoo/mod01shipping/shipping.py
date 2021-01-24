@@ -1,11 +1,19 @@
 class ShippingContainer:
     next_serial = 1337  # Class attribute
 
-    @staticmethod
-    def _generate_serial():
-        result = ShippingContainer.next_serial
-        ShippingContainer.next_serial += 1
+    @classmethod
+    def _generate_serial(cls):
+        result = cls.next_serial
+        cls.next_serial += 1
         return result
+
+    @classmethod
+    def create_empty(cls, owner_code):
+        return cls(owner_code, contents=[])
+
+    @classmethod
+    def create_with_items(cls, owner_code, items):
+        return cls(owner_code, contents=list(items))
 
     def __init__(self, owner_code, contents):
         self.owner_code = owner_code  # Instance attribute
@@ -16,6 +24,8 @@ class ShippingContainer:
 # c2 = ShippingContainer("YML", ["books"])
 # c2.owner_code
 # c3 = ShippingContainer("XUS", ["computers"])
+# c7 = ShippingContainer.create_empty("YML")
+# c8 = ShippingContainer.create_with_items("MAE", {"food", "textiles", "minerals"})
 
 # Scopes in Python  -   LEGB
 # Local -   Inside the current function
