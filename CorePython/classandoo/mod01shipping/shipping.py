@@ -38,6 +38,9 @@ class ShippingContainer:
 
     @property
     def volume_ft3(self):
+        return self._calc_volume()
+
+    def _calc_volume(self):
         return ShippingContainer.HEIGHT_FT * ShippingContainer.WIDTH_FT * self.length_ft
 
 
@@ -78,6 +81,9 @@ class RefrigeratedShippingContainer(ShippingContainer):
 
     @celsius.setter
     def celsius(self, value):
+        self._set_celsius(value)
+
+    def _set_celsius(self, value):
         if value > RefrigeratedShippingContainer.MAX_CELSIUS:
             raise ValueError("Temperature too hot!")
         self._celsius = value
@@ -90,10 +96,9 @@ class RefrigeratedShippingContainer(ShippingContainer):
     def fahrenheit(self, value):
         self.celsius = RefrigeratedShippingContainer._f_to_c(value)
 
-    @property
-    def volume_ft3(self):
+    def _calc_volume(self):
         return (
-                super(RefrigeratedShippingContainer, self).volume_ft3
+                super(RefrigeratedShippingContainer, self)._calc_volume()
                 - RefrigeratedShippingContainer.FRIDGE_VOLUME_FT3
         )
 
@@ -120,11 +125,10 @@ class HeatedRefrigeratedShippingContainer(RefrigeratedShippingContainer):
     #     super().__init__(owner_code, length_ft, contents, null, celsius, kwargs)
     #     self._celsius = value
 
-    @RefrigeratedShippingContainer.celsius.setter
-    def celsius(self, value):
+    def _set_celsius(self, value):
         if value < HeatedRefrigeratedShippingContainer.MIN_CELSIUS:
             raise ValueError("Temperature too cold!")
-        RefrigeratedShippingContainer.celsius.fset(self, value)
+        super(HeatedRefrigeratedShippingContainer, self)._set_celsius(value)
 
 # from classandoo.mod01shipping.shipping import *
 # h1 = HeatedRefrigeratedShippingContainer.create_empty("ESC", length_ft=40, celsius=-18.0)
