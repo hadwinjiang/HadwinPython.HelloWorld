@@ -69,3 +69,6 @@ class SortedIntList(IntList, SortedList):
 #> sil = SortedIntList([42, 23, 3, 78])
 #> SortedIntList.__base__
 #> SortedIntList.__bases__
+
+#> SortedIntList.__mro__
+#  (<class 'classandoo.mod03inheritance.simple_list.SortedIntList'>, <class 'classandoo.mod03inheritance.simple_list.IntList'>, <class 'classandoo.mod03inheritance.simple_list.SortedList'>, <class 'classandoo.mod03inheritance.simple_list.SimpleList'>, <class 'object'>)
