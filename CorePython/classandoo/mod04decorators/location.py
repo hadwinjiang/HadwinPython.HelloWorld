@@ -1,5 +1,6 @@
 import classandoo.mod02string.position as position
 
+
 class Location:
 
     def __init__(self, name, position):
@@ -31,4 +32,4 @@ maracaibo = Location("Maracaibo", position.MarsPosition(10.65, -71.65))
 def typename(obj):
     return type(obj).__name__
 
-#> from classandoo.mod04decorators.location import *
+# > from classandoo.mod04decorators.location import *
