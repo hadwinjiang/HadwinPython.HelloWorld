@@ -18,8 +18,22 @@ class Position:
     def longitude(self):
         return self._longitude
 
+    @property
+    def latitude_hemisphere(self):
+        return "N" if self.latitude >=0 else "S"
+
+    @property
+    def longitude_hemishere(self):
+        return "E" if self.longitude >=0 else "W"
+
     def __repr__(self):
         return f"{typename(self)}(latitude={self.latitude}, longitude={self.longitude})"
+
+    def __str__(self):
+        return (
+            f"{abs(self.latitude)} {self.latitude_hemisphere}, "
+            f"{abs(self.longitude)} {self.longitude_hemishere}"
+        )
 
 
 class EarthPosition(Position):
@@ -52,5 +66,8 @@ def typename(obj):
 # 'Position -33.9 151.2'
 #> sydney
 # Position -33.9 151.2
-#> earth_position = EarthPosition(23, 23)
+#> earth_position = EarthPosition(-77.5, 167.2)
 #> mars_position = MarsPosition(34, 45)
+#> str(earth_position)
+#> print("Mount Erebus is located at ", earth_position)
+# Mount Erebus is located at  77.5 S, 167.2 E
