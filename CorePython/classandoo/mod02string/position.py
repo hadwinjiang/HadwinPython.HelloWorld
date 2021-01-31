@@ -71,3 +71,14 @@ def typename(obj):
 #> str(earth_position)
 #> print("Mount Erebus is located at ", earth_position)
 # Mount Erebus is located at  77.5 S, 167.2 E
+
+#> q = 7.748091e-5
+#> format(q)
+# 7.748091e-5
+#> format(q, "f")
+# 0.000077
+#> format(q, ".7f")
+# 0.0000775
+#> format(q, ".11f")
+# 0.00007748091
+# f"The conductance quantum is {q:.6f}"
