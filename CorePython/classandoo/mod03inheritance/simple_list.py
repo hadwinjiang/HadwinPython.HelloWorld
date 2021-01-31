@@ -43,6 +43,10 @@ class IntList(SimpleList):
         super(IntList, self).add(item)
 
 
+class SortedIntList(IntList, SortedList):
+    pass
+
+
 #> from classandoo.mod03inheritance.simple_list import *
 #> sl = SortedList([4, 3, 78, 1])
 #> sl.len()
@@ -62,3 +66,6 @@ class IntList(SimpleList):
 #> il.add(19)
 #> issubclass(IntList, SimpleList)
 #> issubclass(SortedList, SimpleList)
+#> sil = SortedIntList([42, 23, 3, 78])
+#> SortedIntList.__base__
+#> SortedIntList.__bases__
