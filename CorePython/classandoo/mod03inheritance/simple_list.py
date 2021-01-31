@@ -28,7 +28,37 @@ class SortedList(SimpleList):
         self.sort()
 
 
+class IntList(SimpleList):
+    def __init__(self, items=()):
+        for x in items: self._validate(x)
+        super(IntList, self).__init__(items)
+
+    @staticmethod
+    def _validate(x):
+        if not isinstance(x, int):
+            raise TypeError("IntList only supports integer values.")
+
+    def add(self, item):
+        self._validate(item)
+        super(IntList, self).add(item)
+
+
 #> from classandoo.mod03inheritance.simple_list import *
 #> sl = SortedList([4, 3, 78, 1])
 #> sl.len()
 #> sl.add(10)
+
+#> isinstance(3, int)
+#> isinstance('hello!', str)
+#> isinstance(4.567, bytes) # false
+#> sl = SortedList([4, 3, 78, 1])
+#> isinstance(sl, SortedList)
+#> isinstance(sl, SimpleList)
+#> x = []
+#> isinstance(x, (float, dict, list))
+
+#> from classandoo.mod03inheritance.simple_list import *
+#> il = IntList([1, 2, 3, 4])
+#> il.add(19)
+#> issubclass(IntList, SimpleList)
+#> issubclass(SortedList, SimpleList)
