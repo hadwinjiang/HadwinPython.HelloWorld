@@ -1,0 +1,32 @@
+
+TableName:
+DrOperations
+PK: operation_id
+SK: instance_id / description
+
+Operations
+0. Operation Definition
+    Operation_ID (20211212DrAz1Az2)
+    Operation_Description
+    Tag 
+    source_az
+    Target_AZ
+1. Collect Source information based on tag (tag, instance_id, datetime_stamp, ip, sg, source_az)
+Operation_ID
+instance_id
+stage
+Tag
+instance_id
+datetime_stamp
+ip
+sg
+source_az
+2. Preparation period to shutdown instance, and generate snapshot (tag, instance_id, ami)
+3. Switch to target az 
+4. Provide some observation
+
+5. Provide report
+
+0. Operations
+
+
